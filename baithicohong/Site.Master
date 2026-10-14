@@ -1,0 +1,103 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="baithicohong.SiteMaster" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Hệ Thống Quản Lý Sinh Viên</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+        body { background-color: #e9ecef; color: #333; }
+        
+        
+        .top-navbar { background-color: #2b303a; color: white; height: 45px; display: flex; justify-content: space-between; align-items: center; padding: 0 15px; font-size: 13px; }
+        .brand { font-size: 16px; font-weight: bold; }
+        .top-menu { display: flex; gap: 15px; list-style: none; align-items: center; }
+        .top-menu a { color: #d1d5db; text-decoration: none; font-size: 12px; }
+        .top-menu a:hover { color: white; }
+        
+        
+        .main-nav { background-color: #3a414d; color: white; padding: 0 10px; }
+        .main-nav ul { display: flex; list-style: none; }
+        .main-nav ul li a { display: block; padding: 8px 15px; color: #e2e8f0; text-decoration: none; font-size: 13px; }
+        .main-nav ul li a:hover, .main-nav ul li.active a { background-color: #4f5866; }
+
+        
+        .app-container { display: flex; min-height: calc(100vh - 100px); }
+        
+        
+        .sidebar { width: 220px; background-color: #343a40; color: white; padding-top: 5px; flex-shrink: 0; }
+        .sidebar ul { list-style: none; }
+        .sidebar ul li a { display: block; padding: 10px 15px; color: #ced4da; text-decoration: none; font-size: 13px; border-bottom: 1px solid #454d55; transition: 0.2s; }
+        .sidebar ul li a:hover, .sidebar ul li.active a { background-color: #495057; color: #ffffff; font-weight: bold; border-left: 4px solid #0d6efd; }
+
+        
+        .content-area { flex: 1; padding: 15px; background-color: #f8f9fa; }
+        
+        
+        .footer { background-color: #2b303a; color: #a1a8b0; text-align: center; padding: 8px; font-size: 12px; border-top: 1px solid #3a414d; }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        
+        <div class="top-navbar">
+            <div class="brand">ASP.NET</div>
+            <ul class="top-menu">
+                <li><a href="#">💻 HỆ THỐNG</a></li>
+                <li><a href="#">📄 HỒ SƠ</a></li>
+                <li><a href="#">📊 BÁO CÁO</a></li>
+                <li><a href="#">🖥️ ỨNG DỤNG</a></li>
+                <li><a href="#" style="background: #495057; padding: 4px 8px; border-radius: 3px;">Đăng nhập 👤</a></li>
+            </ul>
+        </div>
+
+        
+        <div class="main-nav">
+            <ul>
+                <li class="active"><a href="Default.aspx">Trang Chủ</a></li>
+                <li><a href="#">Giới thiệu</a></li>
+                <li><a href="#">Lớp học</a></li>
+                <li><a href="quanlysinhvien.aspx">Sinh viên</a></li>
+                <li><a href="#">Thống kê</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </div>
+
+        
+        <div class="app-container">
+            
+            <div class="sidebar">
+                <ul>
+                    <li class="<%= Request.Url.AbsolutePath.EndsWith("Default.aspx") ? "active" : "" %>">
+                        <a href="Default.aspx">🏠 Trang chủ</a>
+                    </li>
+                    <li class="<%= Request.Url.AbsolutePath.EndsWith("quanlylophoc.aspx") ? "active" : "" %>">
+                        <a href="quanlylophoc.aspx">🏫 Quản lý lớp học</a>
+                    </li>
+                    <li class="<%= Request.Url.AbsolutePath.EndsWith("quanlysinhvien.aspx") ? "active" : "" %>">
+                        <a href="quanlysinhvien.aspx">👥 Quản lý sinh viên</a>
+                    </li>
+                    <li class="<%= Request.Url.AbsolutePath.EndsWith("tracuu.aspx") ? "active" : "" %>">
+                        <a href="tracuu.aspx">📌 Tra cứu & Điểm danh</a>
+                    </li>
+                    <li class="<%= Request.Url.AbsolutePath.EndsWith("quanlydangnhap.aspx") ? "active" : "" %>">
+                        <a href="quanlydangnhap.aspx">🔑 Quản lý đăng nhập</a>
+                    </li>
+                    <li>
+                        <a href="Login.aspx">🚪 Đăng xuất</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="content-area">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+            </div>
+        </div>
+
+        <div class="footer">
+            Khoa CNTT / Lớp TT1D23 - Trường ĐH CNVT
+        </div>
+    </form>
+</body>
+</html>
